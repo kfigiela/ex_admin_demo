@@ -2,7 +2,13 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
+      joinTo: {
+        "js/app.js": /^(web\/static\/js)|(node_modules)/,
+        "js/ex_admin_common.js": ["web/static/vendor/ex_admin_common.js"],
+        "js/admin_lte2.js": ["web/static/vendor/admin_lte2.js"],
+        "js/jquery.min.js": ["web/static/vendor/jquery.min.js"],
+      }
+
 
       // To use a separate vendor.js bundle, specify two files path
       // https://github.com/brunch/brunch/blob/stable/docs/config.md#files
@@ -21,7 +27,15 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: {
+        "css/app.css": /^(web\/static\/css)/,
+        "css/admin_lte2.css": ["web/static/vendor/admin_lte2.css"],
+        "css/active_admin.css.css": ["web/static/vendor/active_admin.css.css"],
+      },
+      order: {
+        after: ["web/static/css/app.css"] // concat app.css last
+      }
+
     },
     templates: {
       joinTo: "js/app.js"
@@ -68,3 +82,4 @@ exports.config = {
     whitelist: ["phoenix", "phoenix_html"]
   }
 };
+
