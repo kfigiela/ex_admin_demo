@@ -6,10 +6,10 @@ defmodule ExAdminDemo.ExAdmin.Order do
     menu priority: 3
 
     scope :all, default: true
-    scope :in_progress, fn(q) -> 
+    scope :in_progress, fn(q) ->
       where(q, [p], is_nil(p.checked_out_at))
     end
-    scope :complete, fn(q) -> 
+    scope :complete, fn(q) ->
       where(q, [p], not is_nil(p.checked_out_at))
     end
 
@@ -17,7 +17,7 @@ defmodule ExAdminDemo.ExAdmin.Order do
 
     index do
       column "Order", fn(o) -> a " ##{o.id}", href: "/admin/orders/#{o.id}" end
-      column "State", fn(o) -> 
+      column "State", fn(o) ->
         status_tag Order.state(o)
       end
       column :checked_out_at, label: "Date"
@@ -51,12 +51,14 @@ defmodule ExAdminDemo.ExAdmin.Order do
     end
 
     sidebar "ExAdmin Demo", only: [:index, :show] do
-      Phoenix.View.render ExAdminDemo.AdminView, "sidebar_links.html", [model: "order"]
+      Phoenix.View.render(ExAdminDemo.AdminView, "sidebar_links.html", [model: "order"])
+      |> IO.inspect()
+      |> Phoenix.HTML.raw()
     end
   end
 
   def display_name(order) do
-    decimal_to_currency(order.total_price) <>  
+    decimal_to_currency(order.total_price) <>
         " - Order ##{order.id} (#{order.user.username})"
   end
 end

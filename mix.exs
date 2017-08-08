@@ -40,14 +40,16 @@ defmodule ExAdminDemo.Mixfile do
      {:gettext, "~> 0.9"},
      {:phoenix_haml, "~> 0.2"},
      {:calliope, github: "nurugger07/calliope", override: true},
-     {:ex_admin, github: "smpallen99/ex_admin"},
+     {:ex_admin, path: "../ex_admin"},
+     {:xain, path: "../xain", override: true},
      {:arc,  "~> 0.5.1"},
      {:arc_ecto, "~> 0.3.2"},
      {:ex_aws, "~> 0.4.10"}, # Required if using Amazon S3
      {:httpoison, "~> 0.7"},  # Required if using Amazon S3
      {:faker, "~> 0.6.0"},
      {:number, "~> 0.4.1"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:apex, "~> 1.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
